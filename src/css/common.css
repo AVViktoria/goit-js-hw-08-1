@@ -10,10 +10,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* background-color: #fafafa; */
   background-color: #d4ccee8f;
-
   color: #212121;
   line-height: 1.5;
-  
+  list-style-type: none;
 }
 
 img {
@@ -25,6 +24,9 @@ ul {
   list-style-type: none;
 }
 
-li{
-  font-size:18px;
+li  {
+  font-size:22px;
+}
+a {
+  font-size:20px;
 }
