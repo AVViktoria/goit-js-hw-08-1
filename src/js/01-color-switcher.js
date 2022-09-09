@@ -6,7 +6,11 @@ const refs = {
 
 refs.startButton.addEventListener('click', onClickChangeBcgColor);
 refs.stopButton.addEventListener('click', onClickStopBcgColor);
-let timerId = 0;
+
+let timerId = null;
+function onClickChangeBcgColor(){
+  onClickStopBcgColor();
+}
 
 function onClickChangeBcgColor(){
  refs.startButton.disabled = true;
@@ -27,5 +31,4 @@ function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-  
     

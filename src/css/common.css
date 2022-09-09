@@ -9,10 +9,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background-color: #fafafa; */
-  background-color: #d4ccee8f;
   color: #212121;
   line-height: 1.5;
   list-style-type: none;
+    background-color: #dbe4ee;
+
 }
 
 img {
