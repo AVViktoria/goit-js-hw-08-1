@@ -45,5 +45,7 @@ const objectPromise = {position, delay};
       resolve(objectPromise);
     }
       reject(objectPromise);
-    }, delay)
+    }
+    // , delay
+    )
   }
