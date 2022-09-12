@@ -1,11 +1,11 @@
 import flatpickr from 'flatpickr';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import 'flatpickr/dist/flatpickr.min.css';
-import 'flatpickr/dist/themes/dark.css';
+// import 'flatpickr/dist/themes/dark.css';
 
 let selectedTime = null;
 const refs = {
-  inputDate: document.querySelector('input#datetime-picker'),
+  inputDate: document.querySelector('#datetime-picker'),
   startBtn: document.querySelector('button[data-start]'),
   days: document.querySelector('span[data-days]'),
   hours: document.querySelector('span[data-hours]'),
@@ -59,11 +59,6 @@ const options = {
   },
 };
 
-// refs.startButton.addEventListener('click', () => {
-//   timer.start();
-// });
-// refs.stopButton.addEventListener('click', timer.start.bind(timer));
-
 class Timer {
   //*  первоначальные данные перед запуском таймера
   constructor() {
@@ -74,13 +69,13 @@ class Timer {
 
   //*  запустили таймер
   startTimer() {
-    if (this.isActive) {
-      return;
-    }
-
-    // if(refs.startBtn.hasAttribute('isActive')){
+    // if (this.isActive) {
     //   return;
     // }
+
+    if(refs.startBtn.hasAttribute('isActive')){
+      return;
+    }
 
     this.timerID = setInterval(() => {
       const currentTime = Date.now();

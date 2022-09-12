@@ -3,13 +3,18 @@ const refs = {
   startButton: document.querySelector('[data-start]'),
   stopButton: document.querySelector('[data-stop]'),
 };
+//  refs.startButton.addAttribute('disabled') = false; 
+// refs.stopButton.addAttribute('disabled') = true;
+
 
 refs.startButton.addEventListener('click', onClickChangeBcgColor);
 refs.stopButton.addEventListener('click', onClickStopBcgColor);
 
 let timerId = null;
+
+
 function onClickChangeBcgColor(){
-  onClickStopBcgColor();
+onClickStopBcgColor();
 }
 
 function onClickChangeBcgColor(){
