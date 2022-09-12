@@ -14,9 +14,7 @@ const refs = {
 };
 
 // refs.startBtn.setAttribute('disabled', true);
-const timer = new Timer();
-flatpickr(refs.inputDate, options);
-refs.startBtn.addEventListener('click', () => timer.startTimer());
+
 
 // //*   Принимает время в миллисекундах
 // //*   Высчитывает сколько в них вмещается часов/минут/секунд
@@ -108,6 +106,9 @@ class Timer {
     clearInterval(this.timerId);
   }
 }
+const timer = new Timer();
+flatpickr(refs.inputDate, options);
+refs.startBtn.addEventListener('click', () => timer.startTimer());
 
 // const startTime = Date.now();
 // refs.startButton.hasAttribute('isActive') = true;
