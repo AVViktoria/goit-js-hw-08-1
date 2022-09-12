@@ -16,7 +16,6 @@ const refs = {
 
 // refs.startBtn.setAttribute('disabled', true);
 
-
 // //*   Принимает время в миллисекундах
 // //*   Высчитывает сколько в них вмещается часов/минут/секунд
 // //*   Возвращает объект со свойствами hours, mins, secs
@@ -55,13 +54,11 @@ const options = {
       // selectedDates[0] = new Date();
     } else {
       selectedTime = selectedDates[0];
-      refs.startBtn.disabled = false; 
+      refs.startBtn.disabled = false;
     }
   },
 };
 flatpickr(refs.inputDate, options);
-
-
 
 class Timer {
   //*  первоначальные данные перед запуском таймера
@@ -77,7 +74,7 @@ class Timer {
     //   return;
     // }
 
-    if(refs.startBtn.hasAttribute('isActive')){
+    if (refs.startBtn.hasAttribute('isActive')) {
       return;
     }
 
@@ -86,15 +83,12 @@ class Timer {
       const deltaTime = selectedTime - currentTime;
       const componentsTimer = convertMs(deltaTime);
 
-       //*  остановили таймер очистили интервал
+      //*  остановили таймер очистили интервал
       if (deltaTime <= 1000) {
         this.stopTimer();
-        
       }
-      
-      this.onUpdateClockFace(componentsTimer);
 
-      
+      this.onUpdateClockFace(componentsTimer);
     }, 1000);
   }
 
@@ -106,7 +100,6 @@ class Timer {
     refs.seconds.textContent = pad(seconds);
   }
 
-  
   stopTimer() {
     clearInterval(this.timerId);
   }
@@ -122,4 +115,3 @@ refs.startBtn.addEventListener('click', () => timer.startTimer());
 // const currentTime = Date.now();
 //       const deltaTime = currentTime - startTime;
 //       const time = this.getTimeComponents(deltaTime);
-
