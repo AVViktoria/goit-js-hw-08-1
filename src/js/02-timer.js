@@ -86,7 +86,7 @@ class Timer {
       const currentTime = Date.now();
       const deltaTime = selectedTime - currentTime;
       const componentsTimer = convertMs(deltaTime);
-      this.updateComponentsTimer(componentsTimer);
+      this.onUpdateClockFace(componentsTimer);
       if (deltaTime <= 0) {
         this.stopTimer();
       }
@@ -106,6 +106,7 @@ class Timer {
     clearInterval(this.timerId);
   }
 }
+
 const timer = new Timer();
 flatpickr(refs.inputDate, options);
 refs.startBtn.addEventListener('click', () => timer.startTimer());
