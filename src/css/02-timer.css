@@ -1,4 +1,4 @@
-*{
+/* *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -71,7 +71,6 @@ input{
 
    button{ 
     color:#fff;
-    /* left:15px;*/
     top:25px;  
     height:50px;
     width:120px;
@@ -84,7 +83,7 @@ input{
    transform: translate(-50%,-50%);
   top: 20%;
   left: 50%;
-  } 
+  }  */
 
 
 
