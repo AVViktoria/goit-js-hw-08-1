@@ -17,7 +17,7 @@ const refs = {
 const timer = new Timer();
 flatpickr(refs.inputDate, options);
 refs.startBtn.addEventListener('click', () => timer.startTimer());
-// refs.startBtn.setAttribute('disabled', true);
+refs.startBtn.setAttribute('disabled', true);
 
 // //*   Принимает время в миллисекундах
 // //*   Высчитывает сколько в них вмещается часов/минут/секунд
