@@ -31,6 +31,7 @@ setTimeout(() => {
     
   });
   delayValue +=stepValue;
+  e.target.reset();
   }
 }
 
@@ -44,5 +45,5 @@ const objectPromise = {position, delay};
       resolve(objectPromise);
     }
       reject(objectPromise);
-    })
+    }, delay)
   }
