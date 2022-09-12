@@ -4,6 +4,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 // import 'flatpickr/dist/themes/dark.css';
 
 let selectedTime = null;
+
 const refs = {
   inputDate: document.querySelector('#datetime-picker'),
   startBtn: document.querySelector('button[data-start]'),
@@ -27,37 +28,40 @@ function convertMs(ms) {
   const day = hour * 24;
 
   // Remaining days
-  const days = pad(Math.floor(ms / day));
+  const days = Math.floor(ms / day);
   // Remaining hours
-  const hours = pad(Math.floor((ms % day) / hour));
+  const hours = Math.floor((ms % day) / hour);
   // Remaining minutes
-  const minutes = pad(Math.floor(((ms % day) % hour) / minute));
+  const minutes = Math.floor(((ms % day) % hour) / minute);
   // Remaining seconds
-  const seconds = pad(Math.floor((((ms % day) % hour) % minute) / second));
+  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
   return { days, hours, minutes, seconds };
 }
 
-// //*   Принимает число, приводит к строке и добавляет в начало 0 если число меньше 2-х знаков
+//*   Принимает число, приводит к строке и добавляет в начало 0 если число меньше 2-х знаков
 function pad(value) {
   return String(value).padStart(2, '0');
 }
-
+//*   настройки  options  с  библиотеки  flatpickr
 const options = {
   enableTime: true,
   time_24hr: true,
-  defaultDate: Date.now(),
+  defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    if (selectedDates[0] < Date.now()) {
+    if (selectedDates[0].getTime() <= Date.now()) {
       Notify.failure('Please choose a date in the future');
-      selectedDates[0] = new Date();
+      // selectedDates[0] = new Date();
     } else {
-      refs.startBtn.disabled = false;
       selectedTime = selectedDates[0];
+      refs.startBtn.disabled = false; 
     }
   },
 };
+flatpickr(refs.inputDate, options);
+
+
 
 class Timer {
   //*  первоначальные данные перед запуском таймера
@@ -78,32 +82,38 @@ class Timer {
     }
 
     this.timerID = setInterval(() => {
-      const currentTime = Date.now();
+      const currentTime = new Date();
       const deltaTime = selectedTime - currentTime;
       const componentsTimer = convertMs(deltaTime);
-      this.onUpdateClockFace(componentsTimer);
-      if (deltaTime <= 0) {
-        this.stopTimer();
+
+       //*  остановили таймер очистили интервал
+      if (deltaTime <= 1000) {
+        // this.stopTimer();
+        clearInterval(this.timerId);
       }
+      
+      this.onUpdateClockFace(componentsTimer);
+
+      
     }, 1000);
   }
 
   //*  передаем  интерфейс  таймера
   onUpdateClockFace({ days, hours, minutes, seconds }) {
-    refs.days.textContent = days;
-    refs.hours.textContent = hours;
-    refs.minutes.textContent = minutes;
-    refs.seconds.textContent = seconds;
+    refs.days.textContent = pad(days);
+    refs.hours.textContent = pad(hours);
+    refs.minutes.textContent = pad(minutes);
+    refs.seconds.textContent = pad(seconds);
   }
 
-  //*  остановили таймер очистили интервал
-  stopTimer() {
-    clearInterval(this.timerId);
-  }
+  
+  // stopTimer() {
+  //   clearInterval(this.timerId);
+  // }
 }
 
 const timer = new Timer();
-flatpickr(refs.inputDate, options);
+
 refs.startBtn.addEventListener('click', () => timer.startTimer());
 
 // const startTime = Date.now();
