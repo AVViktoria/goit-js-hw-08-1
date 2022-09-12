@@ -1,6 +1,5 @@
 import flatpickr from 'flatpickr';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// Дополнительный импорт стилей
 import 'flatpickr/dist/flatpickr.min.css';
 import 'flatpickr/dist/themes/dark.css';
 
@@ -14,10 +13,10 @@ const refs = {
   seconds: document.querySelector('span[data-seconds]'),
 };
 
+// refs.startBtn.setAttribute('disabled', true);
 const timer = new Timer();
 flatpickr(refs.inputDate, options);
 refs.startBtn.addEventListener('click', () => timer.startTimer());
-refs.startBtn.setAttribute('disabled', true);
 
 // //*   Принимает время в миллисекундах
 // //*   Высчитывает сколько в них вмещается часов/минут/секунд
@@ -45,6 +44,7 @@ function convertMs(ms) {
 function pad(value) {
   return String(value).padStart(2, '0');
 }
+
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -66,13 +66,12 @@ const options = {
 // });
 // refs.stopButton.addEventListener('click', timer.start.bind(timer));
 
-
 class Timer {
   //*  первоначальные данные перед запуском таймера
   constructor() {
     this.timerId = null;
     this.isActive = false;
-    this.startBtn.disabled = true;
+    refs.startBtn.disabled = true;
   }
 
   //*  запустили таймер
@@ -85,8 +84,7 @@ class Timer {
     //   return;
     // }
 
-    this.isActive = true;
-    this.timerId = setInterval(() => {
+    this.timerID = setInterval(() => {
       const currentTime = Date.now();
       const deltaTime = selectedTime - currentTime;
       const componentsTimer = convertMs(deltaTime);
@@ -111,15 +109,10 @@ class Timer {
   }
 }
 
-
-
-
-
-
-
 // const startTime = Date.now();
 // refs.startButton.hasAttribute('isActive') = true;
 
 // const currentTime = Date.now();
 //       const deltaTime = currentTime - startTime;
 //       const time = this.getTimeComponents(deltaTime);
+
