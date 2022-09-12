@@ -81,15 +81,15 @@ class Timer {
       return;
     }
 
-    this.timerID = setInterval(() => {
+    this.timerId = setInterval(() => {
       const currentTime = new Date();
       const deltaTime = selectedTime - currentTime;
       const componentsTimer = convertMs(deltaTime);
 
        //*  остановили таймер очистили интервал
       if (deltaTime <= 1000) {
-        // this.stopTimer();
-        clearInterval(this.timerId);
+        this.stopTimer();
+        
       }
       
       this.onUpdateClockFace(componentsTimer);
@@ -107,9 +107,9 @@ class Timer {
   }
 
   
-  // stopTimer() {
-  //   clearInterval(this.timerId);
-  // }
+  stopTimer() {
+    clearInterval(this.timerId);
+  }
 }
 
 const timer = new Timer();
