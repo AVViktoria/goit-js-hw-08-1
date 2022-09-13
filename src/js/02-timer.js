@@ -106,7 +106,6 @@ class Timer {
 }
 
 const timer = new Timer();
-
 refs.startBtn.addEventListener('click', () => timer.startTimer());
 
 // const startTime = Date.now();
